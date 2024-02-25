@@ -17,7 +17,13 @@ class MyWidget(Widget):
 class YahooButton(Button):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.resize()
         self.draw_normal()
+
+    def resize(self):
+        label = Label(text=self.text, font_size='12sp', bold=True)
+        label.texture_update()
+        self.size = (label.texture_size[0] + 20, label.texture_size[1] + 5)
 
     def draw_normal(self):
         self.canvas.clear()
@@ -189,7 +195,8 @@ class YahooButton(Button):
 class MyApp(App):
     def build(self):
         parent = MyWidget()
-        btn = YahooButton(text="MAKE THE ICON", pos=(200, 200), size=(140, 22))
+        #btn = YahooButton(text="MAKE THE ICON", pos=(200, 200), size=(140, 22))
+        btn = YahooButton(text="MAKE THE ICON", pos=(200, 200))
         parent.add_widget(btn)
         return parent
 
